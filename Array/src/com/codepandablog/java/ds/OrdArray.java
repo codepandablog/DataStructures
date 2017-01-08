@@ -35,39 +35,17 @@ public class OrdArray {
 	}
 
 	public void insert(long insertKey) {
-		int lowerBound = 0;
-		int higherBound = nElems - 1;
-		int current;
-		int insertLocation;
-		while (true) {
-			current = (lowerBound + higherBound) / 2;
-			if (longArray[current] == insertKey) {
-				insertLocation = current + 1;
+		int j;
+		for (j = 0; j < nElems; j++) {
+			if (longArray[j] > insertKey)
 				break;
-			} else if (lowerBound > higherBound) {
-				insertLocation = current + 1;
-				break;
-			} else {
-				if (longArray[current] > insertKey)
-					higherBound = current - 1;
-				else
-					lowerBound = current + 1;
-			}
 		}
-			for (int i = nElems; i > insertLocation; i--) {
-				longArray[i] = longArray[i - 1];
-
+		for (int i = nElems; i > j; i--) {
+			longArray[i] = longArray[i - 1];
 		}
-		longArray[insertLocation] = insertKey;
+		longArray[j] = insertKey;
 		nElems++;
 	}
-	/*
-	 * public void insert(long insertKey) {
-	 * 
-	 * int j; for (j = 0; j < nElems; j++) { if(longArray[j]>insertKey) break; }
-	 * for (int i = nElems; i >j; i--) { longArray[i]=longArray[i-1]; }
-	 * longArray[j]=insertKey; nElems++; }
-	 */
 
 	public boolean delete(long deleteKey) {
 		int j = find(deleteKey);
